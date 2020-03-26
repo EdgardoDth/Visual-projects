@@ -13,17 +13,6 @@ class Perceptron {
         return this.weights;
     }
 
-    predict(inputs) {
-        // Sum all values
-        let sum = 0;
-        for (let i = 0; i < this.weights.length; i++) {
-            sum += inputs[i] * this.weights[i];
-        }
-        // Result is sign of the sum, -1 or 1
-        return this.p_activate(sum);
-
-    }
-
     activate(sum) {
         // sigmoid function
         return 1/(1 + exp(-sum));

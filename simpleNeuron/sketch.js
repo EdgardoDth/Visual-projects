@@ -12,7 +12,7 @@ let training = [
   },
   {
     inputs: [-1, 1, 0],
-    outputs: [0]
+    outputs: [1]
   },
   {
     inputs: [-1, 1, 1],
@@ -34,15 +34,15 @@ function setup() {
 
     p = new Perceptron(training[0].inputs.length, learningrate);
 
-    for(let j  = 0; j < 400; j++) {
-        for(let i = 0; i < training.length; i++) {
-            p.train(training[i].inputs, training[i].outputs);
-        }
-    }
 }
 
 function draw() {
     background(100);
+    for(let j  = 0; j < 1500; j++) {
+        for(let i = 0; i < training.length; i++) {
+            p.train(training[i].inputs, training[i].outputs);
+        }
+    }
     //stroke(0);
     let resolution = 10;
     let cols = width / resolution;
@@ -53,12 +53,11 @@ function draw() {
             let x1 = i / cols;
             let x2 = j / rows;
             let inputs = [-1, x1, x2];
-            //let y = p.predict(inputs);
             let y = p.dot(inputs);
             noStroke();
             fill(y * 30, y * 50, y * 100); //black or blue
             rect(i * resolution, j * resolution, resolution, resolution);
         }
     }
-    noLoop();
+    //noLoop();
 }
