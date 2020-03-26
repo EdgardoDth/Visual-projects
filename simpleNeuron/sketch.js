@@ -12,7 +12,7 @@ let training = [
   },
   {
     inputs: [-1, 1, 0],
-    outputs: [1]
+    outputs: [0]
   },
   {
     inputs: [-1, 1, 1],
@@ -31,9 +31,10 @@ x,y         x,y
 function setup() {
     createCanvas(400, 400);
     let learningrate = 0.2;
-    p = new Perceptron(training.length, learningrate);
 
-    for(let j  = 0; j < 2000; j++) {
+    p = new Perceptron(training[0].inputs.length, learningrate);
+
+    for(let j  = 0; j < 400; j++) {
         for(let i = 0; i < training.length; i++) {
             p.train(training[i].inputs, training[i].outputs);
         }
@@ -41,8 +42,8 @@ function setup() {
 }
 
 function draw() {
-    background(0);
-    stroke(0);
+    background(100);
+    //stroke(0);
     let resolution = 10;
     let cols = width / resolution;
     let rows = height / resolution;
@@ -52,6 +53,7 @@ function draw() {
             let x1 = i / cols;
             let x2 = j / rows;
             let inputs = [-1, x1, x2];
+            //let y = p.predict(inputs);
             let y = p.dot(inputs);
             noStroke();
             fill(y * 30, y * 50, y * 100); //black or blue
