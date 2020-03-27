@@ -38,7 +38,8 @@ function setup() {
 
 function draw() {
     background(100);
-    for(let j  = 0; j < 1500; j++) {
+	let epochs = 1000;
+    for(let j  = 0; j < epochs; j++) {
         for(let i = 0; i < training.length; i++) {
             p.train(training[i].inputs, training[i].outputs);
         }
